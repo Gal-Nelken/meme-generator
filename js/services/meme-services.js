@@ -28,7 +28,7 @@ const gMeme = {
             y: 350
         }
     ]
-    }
+}
 
 
 function setMemeImg(id) {

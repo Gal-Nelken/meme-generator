@@ -2,13 +2,11 @@
 
 const gElCanvasContainer = document.querySelector('.meme-container');
 const gElCanvas = document.getElementById('my-canvas');
-const gElBody = document.querySelector('body');
 const gCtx = gElCanvas.getContext('2d');
 
 
 function memeGene(id) {
     gElCanvasContainer.style.transform = 'translateY(0)';
-    gElBody.style.overflow = 'hidden';
     setMemeImg(id);
     renderMeme();
 }
@@ -32,6 +30,8 @@ function renderMeme() {
         drawText(meme);
     }
     isNewMeme(false);
+    isRemainLines(meme)
+
 }
 
 function drawText(meme) {
@@ -106,6 +106,13 @@ function onRemoveLine() {
     renderMeme();
 }
 
+function isRemainLines (meme){
+    const elTrash = document.querySelector('.remove-line-btn');
+    if (meme.lines.length > 0) {
+        elTrash.style.backgroundColor = '#DA2E37';
+    } else elTrash.style.backgroundColor = 'gray';
+}
+
 function downloadMeme(elLink) {
     const data = gElCanvas.toDataURL();
     elLink.href = data;
@@ -115,7 +122,6 @@ function downloadMeme(elLink) {
 function closeMemeEdit() {
     gElCanvasContainer.style.transform = 'translateY(120%)';
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
-    gElBody.style.overflow = 'visible';
     isNewMeme(true);
 }
 
