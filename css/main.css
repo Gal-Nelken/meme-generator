@@ -6,7 +6,12 @@
 
 @font-face {
     font-family: impact;
-    src: url("/fonts/impact/impact.ttf");
+    src: url("../fonts/impact/impact.ttf");
+}
+
+@font-face {
+    font-family: awesome;
+    src: url("../fonts/awesome/fa-brands-400.woff");
 }
 
 /* BASE */
@@ -42,19 +47,34 @@ button:hover, a:hover {
 /* LAYOUT */
 
 .container {
-    max-width: 1100px;
+    max-width: 720px;
     margin: 0 auto;
     padding: 0;
 }
 
 /* COMPONENTS */
 
+.main-screen {
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(44, 44, 43);
+    opacity: 50%;
+    transition: 0.5s;
+}
+
+.main-screen:hover {
+    cursor: pointer;
+}
+
+/* --- NAV CONTAINER --- */
+
 .main-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #19A59F;
-    height: 75px;
+    background-color: #29B480;
     border-radius: 2em;
     margin-block: 1.5rem;
 }
@@ -69,19 +89,33 @@ button:hover, a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* margin-inline-end: 1rem; */
     list-style-type: none;
-    font-size: 1.5rem;
+    font-size: 1.375rem;
 }
 
 .main-nav-links a {
-    padding-inline: 2em;
+    padding: 0.625rem 1.375rem;
+    margin-inline: 0.25rem;
+    color: #FEFEFE;
+    border-radius: 2em;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.main-nav-links a:hover {
+    background-color: #FEFEFE;
+    color: #29B480;
 }
 
 /* ----- GALLERY CONTAINER ----- */
 
 .main-container {
     background-color: #383B42;
+    border-start-end-radius: 2%;
+    border-start-start-radius: 2%;
+    padding-block-end: 1.25rem;
 }
 
 /* --- SEARCH CONTAINER ---  */
@@ -110,6 +144,15 @@ button:hover, a:hover {
 
 .filter-menu-btn {
     border-radius: 2em;
+    background-color: #149FAA;
+    color: #D2E8E7;
+    width: 5.875rem;
+    height: 2.375rem;
+}
+
+.filter-menu-btn:hover {
+    background-color: #D2E8E7;
+    color: #149FAA;
 }
 
 /* --- GALLERY CONTAINER ---  */
@@ -133,14 +176,75 @@ button:hover, a:hover {
     box-shadow: 0px 2px 10px 10px #767d9e;
 }
 
+/* --- FOOTER CONTAINER --- */
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #29443a;
+    border-bottom-left-radius: 2%;
+    border-bottom-right-radius: 2%;
+}
+
+.footer-logo {
+    margin-block: 1.5rem;
+}
+
+small {
+    margin-block-end: 1.5rem;
+    color: #fcfcfcd0;
+    font-family: sans-serif;
+}
+
+.social-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.fa {
+    color: rgb(199, 192, 182);
+    font-family: awesome;
+    width: 40px;
+    height: 40px;
+    margin-inline-end: 1.25rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fa.facebook::before {
+    content: "\f39e";
+}
+
+.fa.twitter::before {
+    content: "\f099";
+}
+
+.fa.behance::before {
+    content: "\f1b4";
+}
+
+.fa.gitHub::before {
+    content: "\f09b";
+}
+
+.fa:hover {
+    background-color: #5170adb2;
+}
+
 /* ----- MEME EDITOR ----- */
 
 .meme-container {
     display: flex;
-    transform: translateY(-100%);
+    transform: translateY(100%);
     transition: 1s;
     position: fixed;
-    top: 0;
+    bottom: 0;
     width: 100vw;
     height: 100vh;
     justify-content: center;
@@ -155,41 +259,58 @@ button:hover, a:hover {
     right: 20px;
 }
 
-canvas {
+.canvas {
     border: solid 2px black;
+    width: 40%;
+    height: 90%;
 }
 
 .meme-features {
-    display: grid;  
-    grid-template-columns : repeat(5, 50px);
-    grid-template-rows: repeat(6, 50px); 
+    font-family: sans-serif;
+    display: grid;
+    width: 40%;
+    height: 90%;
+    grid-template-columns: repeat(5, 50px);
+    grid-template-rows: repeat(6, 50px);
     justify-content: center;
     align-items: center;
     grid-gap: 0.75rem;
-    margin-inline: 10px;
+    margin-inline: 0.5rem;
+    background-color: #383B42;
+    border-radius: 2%;
+}
+
+.meme-features>* {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2em;
+    background-color: #FFFFFF;
+    font-size: 1.5rem;
 }
 
 .txt-input {
     grid-row-start: 1;
     grid-column: 1 / 6;
-    background-color:wheat;
-    border-radius: 2em;
+    background-color: #EBEEF3;
 }
 
 .change-lines-btn {
     grid-row-start: 2;
     grid-column-start: 2;
+    background-color: #44B3D0;
 }
 
 .add-line-btn {
     grid-row-start: 2;
     grid-column-start: 3;
-    font-size: 1.5rem;
+    background-color: #3DCE53;
 }
 
 .remove-line-btn {
     grid-row-start: 2;
     grid-column-start: 4;
+    background-color: #DA2E37;
 }
 
 .font-size-inc {
@@ -210,7 +331,6 @@ canvas {
 .font-center {
     grid-row-start: 3;
     grid-column-start: 4;
-    
 }
 
 .font-right {
@@ -218,25 +338,24 @@ canvas {
     grid-column-start: 5;
 }
 
-.move-text-left{
+.move-text-left {
     grid-row-start: 4;
     grid-column-start: 1;
-    font-size: 2rem;
 }
-.move-text-right{
+
+.move-text-right {
     grid-row-start: 4;
     grid-column-start: 2;
-    font-size: 2rem;
 }
-.move-text-up{
+
+.move-text-up {
     grid-row-start: 4;
     grid-column-start: 4;
-    font-size: 2rem;
 }
-.move-text-down{
+
+.move-text-down {
     grid-row-start: 4;
     grid-column-start: 5;
-    font-size: 2rem;
 }
 
 .text-fill {
@@ -248,15 +367,106 @@ canvas {
     grid-row-start: 5;
     grid-column-start: 4;
 }
+
 .fill-color {
     grid-row-start: 5;
     grid-column-start: 2;
 }
-.download {
-    grid-row-start: 6;
-    grid-column-start: 2;
+
+.text-fill:hover, .stroke-color:hover, .fill-color:hover {
+    cursor: pointer;
 }
+
 .share {
-    grid-row-start: 6;
-    grid-column-start: 4;
+    grid-row: 6 / 7;
+    grid-column: 4 / 6;
+    background-color: #1E7CD3;
+    color: #FFFFFF;
+    padding-block: 5px;
+}
+
+.download {
+    grid-row: 6 / 7;
+    grid-column: 1 / 3;
+    background-color: #8F44BB;
+    color: #FFFFFF;
+    padding-block: 5px;
+}
+
+/* TABLET VIEW */
+
+@media (min-width: 740px) {
+    .container {
+        max-width: 720px;
+    }
+    .main-nav-btn {
+        display: none;
+    }
+}
+
+/* DESKTOP VIEW */
+
+@media (min-width: 1050px) {
+    .container {
+        max-width: 1000px;
+    }
+}
+
+.meme-container {
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* MOBILE VIEW */
+
+@media (max-width: 740px) {
+    .container {
+        width: 100%;
+    }
+    .main-nav-btn {
+        display: block;
+        border: rgb(122, 122, 122) 1px solid;
+        position: absolute;
+        right: 2px;
+        margin-inline-end: 2rem;
+    }
+    .main-nav-links {
+        width: 80vw;
+        max-height: 80vh;
+        flex-direction: column;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        margin-inline: 10%;
+        background-color: #292929d5;
+        transform: translateY(-120%);
+        transition: 0.7s;
+    }
+
+    .main-nav-links a {
+        height: 15vh;
+        display: block;
+        padding-block: 8vh;
+    }
+
+    .gallery-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .meme-container {
+        flex-direction: column-reverse;
+    }
+
+    .meme-features {
+        width: 70%;
+        height: 60%;
+        grid-template-columns: repeat(5, 40px);
+        grid-template-rows: repeat(6, 30px);
+        margin-block: 10px;
+    }
+    .meme-features>* {
+        font-size: 1.1rem;
+        margin: 0;
+        padding: 5px;
+    }
 }

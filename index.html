@@ -10,6 +10,8 @@
 </head>
 
 <body onload="init()">
+    <!-- PAGE SCREEN -->
+    <div class="main-screen" onclick="toggleScreen(this)"></div>
 
     <!-- MAIN PAGE NAV -->
     <header class="main-nav container">
@@ -19,6 +21,7 @@
             <li><a href="#">Gallery</a></li>
             <li><a href="#">About</a></li>
         </ul>
+        <button class="main-nav-btn" onclick="toggleMenu (this)">☰</button>
     </header>
 
     <section class="main-container container">
@@ -47,18 +50,26 @@
     </main>
 
     <!-- PAGE FOTTER -->
-    <footer>
-        <div class="container">
-
-        </div>
-
+    <footer class="container footer-container">
+        <img src="./img/LOGO.png" alt="logo" class="logo footer-logo">
+        <small>
+            <p>
+                &copyChipiRights 2021 - All Rights Reserved
+            </p>
+        </small>
+        <ul class="social-nav">
+            <a href="https://www.facebook.com/  " class="fa facebook"></a>
+            <a href="https://twitter.com/" class="fa twitter"></a>
+            <a href="https://www.behance.net/" class="fa behance"></a>
+            <a href="https://github.com/" class="fa gitHub"></a>
+        </ul>
     </footer>
 
     <!-- MEME EDITOR -->
     <section class="meme-container">
         <button class="close-meme-btn" onclick="closeMemeEdit ()">❌</button>
 
-        <canvas id="my-canvas" width="500" height="500"></canvas>
+        <canvas id="my-canvas" class="canvas" width="400" height="400"></canvas>
 
         <div class="meme-features">
 
@@ -67,28 +78,28 @@
 
             <!-- LINES OPTIONS KEYS -->
             <button class="change-lines-btn" onclick="onSwitchLines ()">
-                <img src="../img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt="switch-lines">
+                <img src="img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt="switch-lines">
             </button>
             <button class="add-line-btn" onclick="onAddLine ()">➕</button>
             <button class="remove-line-btn" onclick="onRemoveLine ()">
-                <img src="../img/ICONS/trash.png" alt="remove-line">
+                <img src="img/ICONS/trash.png" alt="remove-line">
             </button>
 
             <!-- FONT OPTIONS KEYS -->
             <button class="font-size-inc" onclick="onChangeTxtSize(1)">
-                <img src="../img/ICONS/increase font - icon.png" alt="font-size-inc">
+                <img src="img/ICONS/increase font - icon.png" alt="font-size-inc">
             </button>
             <button class="font-size-dec" onclick="onChangeTxtSize(-1)">
-                <img src="../img/ICONS/decrease font - icon.png" alt="font-size-dec">
+                <img src="img/ICONS/decrease font - icon.png" alt="font-size-dec">
             </button>
             <button class="font-left" onclick="onAlignTxt('right')">
-                <img src="../img/ICONS/align-to-left.png" alt="align-left">
+                <img src="img/ICONS/align-to-left.png" alt="align-left">
             </button>
             <button class="font-center" onclick="onAlignTxt('center')">
-                <img src="../img/ICONS/center-text-alignment.png" alt="align-center">
+                <img src="img/ICONS/center-text-alignment.png" alt="align-center">
             </button>
             <button class="font-right" onclick="onAlignTxt('left')">
-                <img src="../img/ICONS/align-to-right.png" alt="align-right">
+                <img src="img/ICONS/align-to-right.png" alt="align-right">
             </button>
 
             <button class="move-text-left" onclick="onSetLineX(-5)">⬅</button>
@@ -102,19 +113,12 @@
                 <option value="impact">
             </datalist> -->
 
+            
             <!-- COLORS OPTIONS -->
             <img src="./img/ICONS/text stroke.png" alt="text stroke" class="text-fill" onclick="onFillTxt()">
             <input class="stroke-color" type="color" id="line-stroke-color" oninput="onChangeStrokeColor(this.value)">
             <input class="fill-color" type="color" id="line-fill-color" oninput="onChangeFillColor(this.value)">
 
-            <!-- DOWNLOAD & SHARE -->
-            <!-- <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
-                <input name="img" id="imgData" type="hidden" />
-                <button class="share" type="submit" >Publish</button>
-                <a href="#" class="btn" onclick="downloadMeme(this)" download="my-img.jpg" class="download">Download</a>
-                <div class="share-container" class="share"></div>
-              </form>
-           -->
 
             <a href="#" onclick="downloadMeme(this)" download="" class="download">Download</a>
             <a href="#" onclick="shareMeme(this)" download="" class="share">Share</a>
@@ -123,7 +127,6 @@
 
     <script src="js/services/util-service.js"></script>
     <script src="js/services/storage-service.js"></script>
-    <!-- <script src="./js/services/upload-service.js"></script> -->
     <script src="js/services/meme-services.js"></script>
     <script src="js/services/main-service.js"></script>
     <script src="js/meme-controller.js"></script>

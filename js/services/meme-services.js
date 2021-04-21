@@ -14,7 +14,7 @@ const gMeme = {
             align: 'center',
             strokeColor: 'gray',
             fillColor: 'white',
-            x: 250,
+            x: 200,
             y: 50
         },
         {
@@ -24,8 +24,8 @@ const gMeme = {
             align: 'center',
             strokeColor: 'green',
             fillColor: 'blue',
-            x: 250,
-            y: 450
+            x: 200,
+            y: 350
         }
     ]
     }
@@ -75,7 +75,7 @@ function isFillTxt() {
     }
     else {
         gMeme.lines[gMeme.selectedLineIdx].isFill = false;
-        elFill.style.backgroundColor = 'unset';
+        elFill.style.backgroundColor = '#FFFFFF';
     }
 }
 
@@ -93,8 +93,8 @@ function addLine() {
         align: 'center',
         strokeColor: 'black',
         fillColor: 'white',
-        x: 250,
-        y: 250
+        x: 200,
+        y: 200
     });
 }
 
@@ -114,7 +114,7 @@ function getMeme() {
             align: 'center',
             strokeColor: 'gray',
             fillColor: 'white',
-            x: 250,
+            x: 200,
             y: 50
         },
             {
@@ -124,8 +124,8 @@ function getMeme() {
                 align: 'center',
                 strokeColor: 'green',
                 fillColor: 'blue',
-                x: 250,
-                y: 450
+                x: 200,
+                y: 350
             });
     }
     return gMeme;
