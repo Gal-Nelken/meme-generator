@@ -1,12 +1,13 @@
 'use strict'
 
-const gElCanvasContainer = document.querySelector('.meme-container');
+const gElMemeBox = document.querySelector('.meme-box');
+const gElGallery = document.querySelector('.gallery-container');
 const gElCanvas = document.getElementById('my-canvas');
 const gCtx = gElCanvas.getContext('2d');
 
-
 function memeGene(id) {
-    gElCanvasContainer.style.transform = 'translateY(0)';
+    gElGallery.style.display = 'none';
+    gElMemeBox.style.display = 'block';
     setMemeImg(id);
     renderMeme();
 }
@@ -14,24 +15,19 @@ function memeGene(id) {
 
 
 function renderMeme() {
-    const meme = getMeme();
+    const meme = getMeme(gElCanvas);
     const img = getImg(meme.selectedImgId);
     const elImg = new Image();
     elImg.src = img.url;
     elImg.onload = () => {
-        let iRatio = elImg.width / elImg.height;
-        let newWidth = gElCanvas.width;
-        let newHeight = newWidth / iRatio;
-        if (newHeight > gElCanvas.height) {
-            newHeight = gElCanvas.height;
-            newWidth = newHeight * iRatio;
-        }
-        gCtx.drawImage(elImg, 0, 0, newWidth, newHeight);
+        let canvasNewHeight = (elImg.width * gElCanvas.width) / elImg.width;
+        gElCanvas.height = canvasNewHeight;
+        gCtx.drawImage(elImg, 0, 0, gElCanvas.width, canvasNewHeight);
         drawText(meme);
     }
     isNewMeme(false);
-    isRemainLines(meme)
-
+    isLinesRemain(meme);
+    
 }
 
 function drawText(meme) {
@@ -39,7 +35,7 @@ function drawText(meme) {
         gCtx.strokeStyle = line.strokeColor;
         gCtx.fillStyle = line.fillColor;
         gCtx.lineWidth = 2;
-        gCtx.font = `${line.fontSize}px impact`;
+        gCtx.font = `${line.fontSize}px ${line.fontFamily}`;
         gCtx.textAlign = line.align;
         gCtx.strokeText(line.txt, line.x, line.y, gElCanvas.width);
         if (line.isFill) gCtx.fillText(line.txt, line.x, line.y, gElCanvas.width);
@@ -106,7 +102,13 @@ function onRemoveLine() {
     renderMeme();
 }
 
-function isRemainLines (meme){
+function onSelectFont (fontFamily){
+    setFontFamily(fontFamily)
+    renderMeme();
+}
+
+
+function isLinesRemain(meme) {
     const elTrash = document.querySelector('.remove-line-btn');
     if (meme.lines.length > 0) {
         elTrash.style.backgroundColor = '#DA2E37';
@@ -120,8 +122,10 @@ function downloadMeme(elLink) {
 }
 
 function closeMemeEdit() {
-    gElCanvasContainer.style.transform = 'translateY(120%)';
+    const meme = getMeme();
+    meme.lines.splice(0, meme.lines.length);
+    gElGallery.style.display = 'grid';
+    gElMemeBox.style.display = 'none';
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
     isNewMeme(true);
 }
-

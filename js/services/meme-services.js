@@ -5,7 +5,6 @@ const gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
     isNewMeme: false,
-
     lines: [
         {
             isFill: false,
@@ -14,6 +13,7 @@ const gMeme = {
             align: 'center',
             strokeColor: 'gray',
             fillColor: 'white',
+            fontFamily: 'impact',
             x: 200,
             y: 50
         },
@@ -24,6 +24,7 @@ const gMeme = {
             align: 'center',
             strokeColor: 'green',
             fillColor: 'blue',
+            fontFamily: 'impact',
             x: 200,
             y: 350
         }
@@ -52,11 +53,16 @@ function setAlignTxt(align) {
 }
 
 function setLineX(num) {
-    gMeme.lines[gMeme.selectedLineIdx].x += num
+    gMeme.lines[gMeme.selectedLineIdx].x += num;
 }
 
 function setLineY(num) {
-    gMeme.lines[gMeme.selectedLineIdx].y += num
+    gMeme.lines[gMeme.selectedLineIdx].y += num;
+}
+
+function setFontFamily(font) {
+    console.log(font);
+    gMeme.lines[gMeme.selectedLineIdx].fontFamily = font;
 }
 
 function setStrokeColor(color) {
@@ -80,9 +86,8 @@ function isFillTxt() {
 }
 
 function switchLines() {
-    gMeme.selectedLineIdx += 1;
+    gMeme.selectedLineIdx++;
     if (gMeme.selectedLineIdx >= gMeme.lines.length) gMeme.selectedLineIdx = 0;
-    renderMeme();
 }
 
 function addLine() {
@@ -93,6 +98,7 @@ function addLine() {
         align: 'center',
         strokeColor: 'black',
         fillColor: 'white',
+        fontFamily: 'impact',
         x: 200,
         y: 200
     });
@@ -114,6 +120,7 @@ function getMeme() {
             align: 'center',
             strokeColor: 'gray',
             fillColor: 'white',
+            fontFamily: 'impact',
             x: 200,
             y: 50
         },
@@ -124,6 +131,7 @@ function getMeme() {
                 align: 'center',
                 strokeColor: 'green',
                 fillColor: 'blue',
+                fontFamily: 'impact',
                 x: 200,
                 y: 350
             });
